@@ -1,12 +1,15 @@
 import React, { forwardRef } from 'react';
+import classnames from 'classnames';
+import './TextField.scss';
 
 interface InputProps {
-  events?: Record<string, unknown>;
-  label?: string;
-  required?: boolean;
   className?: string;
-  name: string;
+  events?: Record<string, unknown>;
   id: string;
+  inputHelper?: string;
+  label?: string;
+  name: string;
+  required?: boolean;
   type?: string;
   value?: string;
 }
@@ -14,18 +17,21 @@ interface InputProps {
 const TextField = forwardRef<HTMLInputElement, InputProps>(
   (props: InputProps, ref) => {
     const {
-      events,
-      label,
-      required,
       className,
-      name,
+      events,
       id,
+      inputHelper,
+      label,
+      name,
+      required = true,
       type,
-      value
+      value,
     } = props;
+
+    const classes = classnames('input-container', className);
     return (
-      <div>
-        <input type={type} id={id} value={value} ref={ref} />
+      <div className={classes}>
+        <input name={name} type={type} id={id} value={value} ref={ref} />
       </div>
     );
   },
