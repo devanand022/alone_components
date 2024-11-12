@@ -1,31 +1,47 @@
 import React, { forwardRef } from 'react';
+import classnames from 'classnames';
+import LabelWithOptional from '../../commonComponents/LabelWithOptional';
 
 interface InputProps {
-  events?: Record<string, unknown>;
-  label?: string;
-  required?: boolean;
   className?: string;
-  name: string;
+  events?: Record<string, unknown>;
   id: string;
+  inputHelper?: string;
+  label?: string;
+  name: string;
+  required?: boolean;
   type?: string;
   value?: string;
+  invalid?: boolean;
 }
 
 const TextField = forwardRef<HTMLInputElement, InputProps>(
   (props: InputProps, ref) => {
     const {
-      events,
-      label,
-      required,
       className,
-      name,
+      events,
       id,
-      type,
-      value
+      inputHelper,
+      label = "name", //Temperoy value
+      name,
+      required = true,
+      type = 'text',
+      value,
+      invalid = false
     } = props;
+
+    const classes = classnames('input-container', className);
     return (
-      <div>
-        <input type={type} id={id} value={value} ref={ref} />
+      <div className={classes}>
+        <LabelWithOptional
+          id='name'
+          label={label}
+          required={required}
+        />
+        <input name={name} type={type} id={id} value={value} ref={ref} {...events} />
+        {invalid ? (
+          <p>Required Field.</p>
+        ) : null}
       </div>
     );
   },
