@@ -1,3 +1,4 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)$/,
         use: {
           loader: "babel-loader",
           options: {
@@ -34,9 +35,9 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" },
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ]
       },
     ],
@@ -44,4 +45,15 @@ module.exports = {
   externals: {
     react: "react",
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [{
+        from: path.resolve(__dirname, 'src/components'),
+        to: path.resolve(__dirname, 'dist/components'),
+        globOptions: {
+          ignore: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+        },
+      }],
+    }),
+  ],
 };

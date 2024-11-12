@@ -1,8 +1,31 @@
 .input-container{
-  min-height: 245px;
-  max-height: 300px;
-  max-width: 700px;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  height: 125px;
+  width: 350px;
+
+  label {
+    font-size: large;
+    padding: 0 2px;
+  }
+
+  input {
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.38);
+    border-radius: 5px;
+    margin: 10px 0;
+    outline: none;
+
+    &:focus {
+      border: 1px solid rgb(0, 140, 255, 1);
+    }
+  }
+
+  p {
+    color: #ff0000;
+    padding: 0 2px;
+    font-size: small;
+  }
 }
-
-

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import { Meta, StoryObj, StoryFn } from '@storybook/react';
-import TextField, { InputProps } from '../TextField';
+import TextField, { InputProps } from '..';
 
 const meta: Meta<typeof TextField> = {
   title: "Components/TextField",
@@ -27,11 +27,12 @@ export const Default: Story = {
   args: {
     label: "Name",
     required: true,
-    id: "TextFieldExample"
+    id: "TextFieldExample",
+    invalid: false
   },
   parameters: {
     controls: {
-      include: [ "label", "required" ],
+      include: [ "label", "required", "invalid"],
     },
   },
 };
