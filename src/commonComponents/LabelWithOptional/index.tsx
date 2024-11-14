@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 type LabelWithOptionalType = {
-  label: string;
+  label?: string;
   required?: boolean;
   wrapWithLabelElement ?: boolean;
   id?: string;
