@@ -11,28 +11,33 @@ export default meta;
 
 type Story = StoryObj<typeof TextField>;
 
-const Template: StoryFn<InputProps> = (args): ReactElement => {
+const Template: StoryFn<typeof TextField> = (args): ReactElement => {
   const [value, setValue] = useState("");
   const events = {
-    OnChange: (e: ChangeEvent<HTMLInputElement>) => {
+    onChange: (e: ChangeEvent<HTMLInputElement>) => {
       console.log("On ChangeEvent Fired");
       setValue(e.target.value);
     },
   };
-  return <TextField {...args} value={value} events={events} />
+  return <TextField {...args} value={value} events={events} />;
 };
 
 export const Default: Story = {
   render: Template,
   args: {
-    label: "Name",
     required: true,
     id: "TextFieldExample",
     invalid: false
   },
   parameters: {
     controls: {
-      include: [ "label", "required", "invalid"],
+      include: [
+        "label",
+        "required",
+        "invalid",
+        "type",
+        "inputHelper"
+      ],
     },
   },
 };
