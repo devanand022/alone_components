@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
     library: {
-      name: "@alonedev/alone_components",
+      name: "@alonedev/react",
       type: "umd",
       export: "default",
     },

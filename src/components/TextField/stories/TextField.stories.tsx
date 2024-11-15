@@ -25,14 +25,19 @@ const Template: StoryFn<typeof TextField> = (args): ReactElement => {
 export const Default: Story = {
   render: Template,
   args: {
-    label: "Name",
     required: true,
     id: "TextFieldExample",
     invalid: false
   },
   parameters: {
     controls: {
-      include: [ "label", "required", "invalid"],
+      include: [
+        "label",
+        "required",
+        "invalid",
+        "type",
+        "inputHelper"
+      ],
     },
   },
 };

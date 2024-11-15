@@ -1,5 +1,5 @@
 {
-  "name": "@alonedev/alone_components",
+  "name": "@alonedev/react",
   "version": "0.0.1",
   "description": "UI libray components",
   "main": "./dist/index.js",
