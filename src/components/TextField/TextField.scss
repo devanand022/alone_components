@@ -32,4 +32,19 @@
     padding: 0 2px;
     font-size: small;
   }
+
+  @media (min-width: 576px) {
+    width: 300px;
+    height: 100px;
+    padding: 8px;
+  }
+  label {
+    font-size: "medium";
+  }
+
+  input {
+    padding:  8px;
+  }
+
+
 }

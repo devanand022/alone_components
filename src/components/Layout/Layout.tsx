@@ -4,7 +4,7 @@ import classnames from "classnames";
 interface LayoutProps {
   children: ReactNode;
   className?: string;
-  variant?: "samll" | "medium" | "large";
+  variant?: "small" | "medium" | "large";
 }
 
 const Layout = (props: LayoutProps) => {
