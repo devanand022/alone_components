@@ -15,7 +15,7 @@ const LabelWithOptional = ({
 }: LabelWithOptionalType): ReactElement => {
   const LabelText = () => (
     <>
-      {label} {required ? "*" : "" }
+      {label} {required ? <span style={{color: "red"}}>*</span> : ""}
     </>
   );
   if(wrapWithLabelElement){
