@@ -35,10 +35,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ]
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" },
+        ],
       },
     ],
   },
@@ -47,13 +47,15 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{
-        from: path.resolve(__dirname, 'src/components'),
-        to: path.resolve(__dirname, 'dist/components'),
-        globOptions: {
-          ignore: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/components"),
+          to: path.resolve(__dirname, "dist/components"),
+          globOptions: {
+            ignore: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+          },
         },
-      }],
+      ],
     }),
   ],
 };
