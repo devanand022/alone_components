@@ -84,11 +84,10 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       invalid = false,
       invalidInputText,
-      pattern,
       inputHelper,
     } = props;
 
-    const [finalvalue, setFinalValue] = useState('');
+    const [finalValue, setFinalValue] = useState('');
     const [isInputEmpty, setIsInputEmpty] = useState(false);
     const [useValidationInvalidInputText, setUseValidationInvalidInputText] = useState(false);
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -124,7 +123,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
     const getInvalidInputText = () : string | undefined => {
       if(!isInputEmpty && chosenType){
         if(chosenType?.validation?.validateFunc){
-          if(chosenType?.validation?.validateFunc(finalvalue)){
+          if (chosenType?.validation?.validateFunc(finalValue)) {
             return chosenType?.validation?.invalidInputText;
           }
         }
@@ -136,12 +135,12 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
       return undefined;
     };
 
-    const renderedLabel = chosenType?.label || label;
-    const renderedInvalidInputText = getInvalidInputText() || invalidInputText;
-    const renderType = chosenType?.type || type;
+    const renderedLabel = chosenType?.label ?? label;
+    const renderedInvalidInputText = getInvalidInputText() ?? invalidInputText;
+    const renderType = chosenType?.type ?? type;
 
     const errorText = () => {
-      if (renderedInvalidInputText && !isInputEmpty && finalvalue) {
+      if (renderedInvalidInputText && !isInputEmpty && finalValue) {
         return renderedInvalidInputText;
       }
       if (isInputEmpty && required) {
@@ -167,7 +166,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
         <LabelWithOptional id={id} label={renderedLabel} required={required} />
         <input
           ref={inputRef}
-          value={finalvalue}
+          value={finalValue}
           {...renderedInputProps}
           onChange={handleInputEvent}
         />
