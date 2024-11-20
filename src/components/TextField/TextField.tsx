@@ -10,7 +10,7 @@ import classnames from "classnames";
 import LabelWithOptional from "../../commonComponents/LabelWithOptional";
 import { EmailValidation, MobileValidation } from "../../helpers/PatternValidation";
 
-type InputModeType = "text" | "email" | "numeric";
+type InputModeType = "text" | "email" | "numeric" | "tel";
 
 interface InputProps {
   className?: string;
@@ -20,7 +20,7 @@ interface InputProps {
   name: string;
   required?: boolean;
   type?: InputModeType;
-  inputHelper?: "Name" | "Email" | "Mobile";
+  inputHelper?: "Name" | "Email" | "Mobile" | "none";
   value?: string;
   invalid?: boolean;
   defaultValue?: string;
@@ -62,11 +62,11 @@ const InputHelpers: InputHelpers = {
   },
   Mobile: {
     label: "Phone Number",
-    type: "numeric",
-    inputMode: "numeric",
+    type: "tel",
+    inputMode: "tel",
     validation: {
       validateFunc: MobileValidation,
-      invalidInputText: "Invalid entry. Phone number must have 10 digit"
+      invalidInputText: "Invalid entry. Phone number must have 10 digit."
     }
   }
 };
@@ -80,7 +80,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
       label,
       defaultValue,
       name,
-      required = true,
+      required,
       type = "text",
       invalid = false,
       invalidInputText,
@@ -138,6 +138,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
 
     const renderedLabel = chosenType?.label || label;
     const renderedInvalidInputText = getInvalidInputText() || invalidInputText;
+    const renderType = chosenType?.type || type;
 
     const errorText = () => {
       if (renderedInvalidInputText && !isInputEmpty && finalvalue) {
@@ -155,7 +156,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
     const renderedInputProps = {
       name,
       id,
-      type,
+      type : renderType,
       "aria-invalid": invalid,
       "aria-required": required,
       ...events,
@@ -163,18 +164,14 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={classes}>
-        <LabelWithOptional
-          id={id}
-          label={renderedLabel}
-          required={required}
-        />
+        <LabelWithOptional id={id} label={renderedLabel} required={required} />
         <input
           ref={inputRef}
           value={finalvalue}
           {...renderedInputProps}
           onChange={handleInputEvent}
         />
-        <p id={errorTextId}>{errorText()}</p>
+        {errorText && <p id={errorTextId}>{errorText()}</p>}
       </div>
     );
   }

@@ -29,7 +29,7 @@ export const Default: Story = {
     id: "TextFieldExample",
     invalid: false,
     inputHelper: "Name",
-    type: "text"
+    label: "deva"
   },
   parameters: {
     controls: {
@@ -37,7 +37,6 @@ export const Default: Story = {
         "label",
         "required",
         "invalid",
-        "type",
         "inputHelper"
       ],
     },
