@@ -58,3 +58,17 @@ test("Checking the Phone input type", () => {
      screen.queryByText("Invalid entry. Phone number must have 10 digit.")
    ).not.toBeInTheDocument();
 });
+
+test("Should fire the external onChange event when the value change", () => {
+  const onChangeFunction = jest.fn();
+  const events = {
+    onChange: () => {
+      onChangeFunction();
+    }
+  }
+  renderComponent({inputHelper: "Name", required: true, events: events});
+  fireEvent.change(screen.getByLabelText("Name *"), {
+    target: {value: "test"}
+  });
+  expect(onChangeFunction).toHaveBeenCalled();
+})
