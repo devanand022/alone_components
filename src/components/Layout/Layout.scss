@@ -1,25 +1,73 @@
-@mixin layout-container($width, $height, $border-radius, $margin){
+@use "sass:map";
+
+// Define breakpoints
+$breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px
+);
+
+// Mixin for layout container
+@mixin layout-container($width, $height, $font) {
+  font-size: $font;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
-  border: 1px solid rgb(0, 140, 255, 1);
-  margin: $margin;
+  padding: 0.4rem;
+  border: 1px solid rgba(0, 140, 255, 1);
+  margin: 0.2em;
   box-shadow: 5px 5px 10px gray;
   width: $width;
   height: $height;
-  border-radius: $border-radius;
+  border-radius: 0.8em;
 }
 
-.layout-small-container{
-  @include layout-container(150px, 150px, 4px, 2px);
+// Mixin for media queries
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint: #{$breakpoint}";
+  }
 }
 
-.layout-medium-container{
-  @include layout-container(200px, 200px, 4px, 4px);
-}
+// Applying media queries for variants
+.layout-container {
+  // Base styles for `small` variant
+  &--small {
+    @include layout-container(150px, 150px, 0.8rem);
 
-.layout-large-container{
-  @include layout-container(400px, 400px, 10px, 5px);
+    @include respond-to(small) {
+      @include layout-container(180px, 180px, 0.8rem);
+    }
+
+    @include respond-to(medium) {
+      @include layout-container(200px, 200px ,0.8rem);
+    }
+  }
+
+  // Styles for `medium` variant
+  &--medium {
+    @include layout-container(200px, 200px, 1rem);
+
+    @include respond-to(medium) {
+      @include layout-container(250px, 250px, 1rem);
+    }
+
+    @include respond-to(large) {
+      @include layout-container(300px, 300px, 1rem);
+    }
+  }
+
+  // Styles for `large` variant
+  &--large {
+    @include layout-container(400px, 400px, 1.5rem);
+
+    @include respond-to(large) {
+      @include layout-container(500px, 500px, 1.5rem);
+    }
+  }
 }

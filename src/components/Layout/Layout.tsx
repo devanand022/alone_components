@@ -12,7 +12,7 @@ const Layout = (props: LayoutProps) => {
 
   const pattern = "layout";
 
-  const classes = classnames(`${pattern}-${variant}-container`, className);
+  const classes = classnames(`${pattern}-container--${variant}`, className);
 
 
   return (
