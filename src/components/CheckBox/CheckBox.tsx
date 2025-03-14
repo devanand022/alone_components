@@ -25,8 +25,8 @@ const CheckBox = (props: CheckBoxProps) => {
     );
   }
   return (
-    <label className={classes}>
-      <input type="checkbox" />
+    <label htmlFor="check" className={classes}>
+      <input id="check" type="checkbox" aria-label="check" />
       <div className="checkmark"></div>
     </label>
   );
