@@ -3,12 +3,14 @@ const path = require("path");
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
   ],
+
   typescript: {
     check: false,
     checkOptions: {},
@@ -19,10 +21,12 @@ const config: StorybookConfig = {
       propFilter: (prop) => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
+
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
   },
+
   webpackFinal: async( config ) => {
     config.module?.rules?.push(
       {
@@ -48,5 +52,7 @@ const config: StorybookConfig = {
     );
     return config;
   },
+
+  docs: {}
 };
 export default config;

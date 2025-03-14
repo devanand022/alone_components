@@ -1,20 +1,24 @@
+import React from 'react';
 import classnames from 'classnames';
 
 interface ButtonProps {
   type: "submit" | "button" | "reset";
   label: string;
+  variant: "primary" | "secondary";
+  events?: Record<string, unknown>;
 }
 
-const pattern = "button";
-
-const classes = classnames(`${pattern}-container`)
-
 const Button = (props: ButtonProps) => {
-  const { type, label } = props;
+  const { type, label, events, variant } = props;
+
+  const classes = classnames(`button-${variant}-container`);
+
   return (
-    <button type={type} className={classes}>
-      {label}
-    </button>
+    <div className={classes}>
+      <button type={type} className={classes} {...events}>
+        {label}
+      </button>
+    </div>
   );
 };
 

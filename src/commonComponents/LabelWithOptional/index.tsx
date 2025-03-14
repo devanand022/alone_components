@@ -6,6 +6,16 @@ type LabelWithOptionalType = {
   wrapWithLabelElement ?: boolean;
   id?: string;
 }
+type LabelProps = {
+  label?: string;
+  required?: boolean;
+}
+
+const LabelText = ({ label, required }: LabelProps): ReactElement => (
+  <>
+    {label} {required ? <span style={{ color: "red" }}>*</span> : ""}
+  </>
+);
 
 const LabelWithOptional = ({
   label,
@@ -13,19 +23,18 @@ const LabelWithOptional = ({
   required,
   wrapWithLabelElement = true
 }: LabelWithOptionalType): ReactElement => {
-  const LabelText = () => (
-    <>
-      {label} {required ? <span style={{color: "red"}}>*</span> : ""}
-    </>
-  );
+  const renderedprops = {
+    label,
+    required
+  }
   if(wrapWithLabelElement){
     return (
       <label htmlFor={id}>
-        <LabelText />
+        <LabelText {...renderedprops} />
       </label>
     );
   }
-  return <LabelText />;
+  return <LabelText {...renderedprops} />;
 };
 
 export default LabelWithOptional;
