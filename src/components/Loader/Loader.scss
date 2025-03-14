@@ -1,17 +1,17 @@
-:root{
+:root {
   --COLOR: hsl(214, 97%, 59%);
   --HEIGHT-OF-LOADER: 0.25rem;
 }
 
 //PrimaryLoader
 
-svg{
+svg {
   width: 3.25em;
   transform-origin: center;
   animation: rotate 2s linear infinite;
 }
 
-circle{
+circle {
   fill: none;
   stroke: var(--COLOR);
   stroke-width: 2;
@@ -22,31 +22,30 @@ circle{
 }
 
 @keyframes rotate {
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
 
 @keyframes dash {
-  0%{
+  0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
   }
 
-  50%{
+  50% {
     stroke-dasharray: 90, 200;
     stroke-dashoffset: -35px;
   }
 
-  100%{
+  100% {
     stroke-dashoffset: -125px;
   }
 }
 
-
 // DotLoader
 
-.dot-container{
+.dot-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +53,7 @@ circle{
   width: 25%;
 }
 
-.dot{
+.dot {
   height: 0.75rem;
   width: 0.75rem;
   margin-right: 0.75rem;
@@ -63,36 +62,36 @@ circle{
   animation: pulse 1.5s infinite ease-in-out;
 }
 
-.dot:last-child{
+.dot:last-child {
   margin-right: 0;
 }
 
-.dot:nth-child(1){
+.dot:nth-child(1) {
   animation-delay: -0.3s;
 }
 
-.dot:nth-child(2){
+.dot:nth-child(2) {
   animation-delay: -0.1s;
 }
 
-.dot:nth-child(3){
+.dot:nth-child(3) {
   animation-delay: 0.1s;
 }
 
-@keyframes pulse{
-  0%{
+@keyframes pulse {
+  0% {
     transform: scale(0.8);
     background-color: #b3d4fc;
     box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
   }
 
-  50%{
+  50% {
     transform: scale(1.2);
     background-color: #6793fb;
     box-shadow: 0 0 0 0 rgba(178, 212, 252, 0);
   }
 
-  100%{
+  100% {
     transform: scale(0.8);
     background-color: #b3d4fc;
     box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
@@ -101,7 +100,7 @@ circle{
 
 //LineLoader
 
-.loader{
+.loader {
   display: block;
   width: 20%;
   height: var(--HEIGHT-OF-LOADER);
@@ -111,8 +110,8 @@ circle{
   position: relative;
 }
 
-.loader::before{
-  content: "";
+.loader::before {
+  content: '';
   position: absolute;
   background-color: var(--COLOR);
   top: 0;
@@ -123,12 +122,12 @@ circle{
   animation: moving 1s ease-in-out infinite;
 }
 
-@keyframes moving{
-  50%{
+@keyframes moving {
+  50% {
     width: 100%;
   }
 
-  100%{
+  100% {
     width: 0;
     right: 0;
     left: unset;

@@ -1,5 +1,5 @@
-import TextField from "./TextField";
-import type { InputProps } from "./TextField";
+import TextField from './TextField';
+import type { InputProps } from './TextField';
 import './TextField.scss';
 
 export type { InputProps };

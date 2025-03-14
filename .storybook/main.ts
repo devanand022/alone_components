@@ -1,14 +1,14 @@
-import type { StorybookConfig } from "@storybook/react-webpack5";
-const path = require("path");
+import type { StorybookConfig } from '@storybook/react-webpack5';
+import path from 'path';
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
   addons: [
-    "@storybook/addon-webpack5-compiler-swc",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    '@storybook/addon-webpack5-compiler-swc',
+    '@storybook/addon-essentials',
+    '@chromatic-com/storybook',
+    '@storybook/addon-interactions',
   ],
 
   typescript: {
@@ -18,41 +18,42 @@ const config: StorybookConfig = {
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
-      propFilter: (prop) => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
 
   framework: {
-    name: "@storybook/react-webpack5",
+    name: '@storybook/react-webpack5',
     options: {},
   },
 
-  webpackFinal: async( config ) => {
+  webpackFinal: async (config) => {
     config.module?.rules?.push(
       {
         //Module CSS
         test: /\.module\.(css|scss)$/,
-        exclude: [path.resolve(__dirname, "node_modules")],
+        exclude: [path.resolve(__dirname, 'node_modules')],
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" },
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
         ],
       },
       {
         // Global CSS
-        test: /\.css|\.scss$/,
-        exclude: [path.resolve(__dirname, "node_modules")],
+        test: /(\.css|\.scss)$/,
+        exclude: [path.resolve(__dirname, 'node_modules')],
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" },
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
         ],
-      }
+      },
     );
     return config;
   },
 
-  docs: {}
+  docs: {},
 };
 export default config;
