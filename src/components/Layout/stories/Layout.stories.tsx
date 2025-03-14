@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
-import { Meta, StoryObj, StoryFn } from "@storybook/react";
-import Layout from "..";
+import React, { ReactElement } from 'react';
+import { Meta, StoryObj, StoryFn } from '@storybook/react';
+import Layout from '..';
 
 const meta: Meta<typeof Layout> = {
-  title: "Components/Layout",
+  title: 'Components/Layout',
   component: Layout,
 };
 
@@ -22,6 +22,6 @@ const Templete: StoryFn<typeof Layout> = (args): ReactElement => {
 export const Default: Story = {
   render: Templete,
   args: {
-    variant: "small"
-  }
+    variant: 'small',
+  },
 };

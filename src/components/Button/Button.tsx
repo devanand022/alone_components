@@ -2,9 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 
 interface ButtonProps {
-  type: "submit" | "button" | "reset";
+  type: 'submit' | 'button' | 'reset';
   label: string;
-  variant: "primary" | "secondary";
+  variant: 'primary' | 'secondary';
   events?: Record<string, unknown>;
 }
 

@@ -5,12 +5,15 @@ import React, {
   useState,
   useRef,
   useEffect,
-} from "react";
-import classnames from "classnames";
-import LabelWithOptional from "../../commonComponents/LabelWithOptional";
-import { EmailValidation, MobileValidation } from "../../helpers/PatternValidation";
+} from 'react';
+import classnames from 'classnames';
+import LabelWithOptional from '../../commonComponents/LabelWithOptional';
+import {
+  EmailValidation,
+  MobileValidation,
+} from '../../helpers/PatternValidation';
 
-type InputModeType = "text" | "email" | "numeric" | "tel";
+type InputModeType = 'text' | 'email' | 'numeric' | 'tel';
 
 interface InputProps {
   className?: string;
@@ -20,7 +23,7 @@ interface InputProps {
   name: string;
   required?: boolean;
   type?: InputModeType;
-  inputHelper?: "Name" | "Email" | "Mobile" | "none";
+  inputHelper?: 'Name' | 'Email' | 'Mobile' | 'none';
   value?: string;
   invalid?: boolean;
   defaultValue?: string;
@@ -47,28 +50,29 @@ type InputHelpers = {
 
 const InputHelpers: InputHelpers = {
   Name: {
-    label: "Name",
-    type: "text",
-    inputMode: "text",
+    label: 'Name',
+    type: 'text',
+    inputMode: 'text',
   },
   Email: {
-    label: "Email",
-    type: "email",
-    inputMode: "email",
+    label: 'Email',
+    type: 'email',
+    inputMode: 'email',
     validation: {
       validateFunc: EmailValidation,
-      invalidInputText: "Invalid entry. Eamil must be in the format of 'user@example.com'."
+      invalidInputText:
+        "Invalid entry. Eamil must be in the format of 'user@example.com'.",
     },
   },
   Mobile: {
-    label: "Phone Number",
-    type: "tel",
-    inputMode: "tel",
+    label: 'Phone Number',
+    type: 'tel',
+    inputMode: 'tel',
     validation: {
       validateFunc: MobileValidation,
-      invalidInputText: "Invalid entry. Phone number must have 10 digit."
-    }
-  }
+      invalidInputText: 'Invalid entry. Phone number must have 10 digit.',
+    },
+  },
 };
 
 const TextField = forwardRef<HTMLInputElement, InputProps>(
@@ -81,7 +85,7 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
       defaultValue,
       name,
       required,
-      type = "text",
+      type = 'text',
       invalid = false,
       invalidInputText,
       inputHelper,
@@ -89,25 +93,28 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
 
     const [finalValue, setFinalValue] = useState('');
     const [isInputEmpty, setIsInputEmpty] = useState(false);
-    const [useValidationInvalidInputText, setUseValidationInvalidInputText] = useState(false);
+    const [useValidationInvalidInputText, setUseValidationInvalidInputText] =
+      useState(false);
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
     React.useImperativeHandle(forwardRef, () => inputRef.current);
-    const emptyInputText = "Required Field.";
+    const emptyInputText = 'Required Field.';
 
     const checkIsInputEmpty = (value: string) => {
       return !(
         (value && value.length > 0) ||
-        typeof defaultValue !== "undefined"
+        typeof defaultValue !== 'undefined'
       );
     };
 
     useEffect(() => {
-      if(invalid){
+      if (invalid) {
         setUseValidationInvalidInputText(true);
       }
     }, [invalid]);
 
-    const chosenType: ChosenTypeInterface | null = inputHelper ? InputHelpers[inputHelper] : null;
+    const chosenType: ChosenTypeInterface | null = inputHelper
+      ? InputHelpers[inputHelper]
+      : null;
 
     const handleInputEvent = (event: ChangeEvent<HTMLInputElement>) => {
       setIsInputEmpty(checkIsInputEmpty(event.target.value));
@@ -120,16 +127,16 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
       setFinalValue(event.target.value);
     };
 
-    const getInvalidInputText = () : string | undefined => {
-      if(!isInputEmpty && chosenType){
-        if(chosenType?.validation?.validateFunc){
+    const getInvalidInputText = (): string | undefined => {
+      if (!isInputEmpty && chosenType) {
+        if (chosenType?.validation?.validateFunc) {
           if (chosenType?.validation?.validateFunc(finalValue)) {
             return chosenType?.validation?.invalidInputText;
           }
         }
       }
 
-      if(useValidationInvalidInputText){
+      if (useValidationInvalidInputText) {
         return chosenType?.invalidInputText;
       }
       return undefined;
@@ -150,14 +157,14 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
 
     const elementId = id;
     const errorTextId = `${elementId}__errortext`;
-    const classes = classnames("input-container", className);
+    const classes = classnames('input-container', className);
 
     const renderedInputProps = {
       name,
       id,
-      type : renderType,
-      "aria-invalid": invalid,
-      "aria-required": required,
+      type: renderType,
+      'aria-invalid': invalid,
+      'aria-required': required,
       ...events,
     };
 
@@ -173,10 +180,10 @@ const TextField = forwardRef<HTMLInputElement, InputProps>(
         {errorText && <p id={errorTextId}>{errorText()}</p>}
       </div>
     );
-  }
+  },
 );
 
-TextField.displayName = "TextField";
+TextField.displayName = 'TextField';
 
 export type { InputProps };
 export default TextField;

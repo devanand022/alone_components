@@ -3,19 +3,19 @@ import { Meta, StoryObj, StoryFn } from '@storybook/react';
 import TextField from '..';
 
 const meta: Meta<typeof TextField> = {
-  title: "Components/TextField",
+  title: 'Components/TextField',
   component: TextField,
-}
+};
 
 export default meta;
 
 type Story = StoryObj<typeof TextField>;
 
 const Template: StoryFn<typeof TextField> = (args): ReactElement => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const events = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => {
-      console.log("On ChangeEvent Fired");
+      console.log('On ChangeEvent Fired');
       setValue(e.target.value);
     },
   };
@@ -26,19 +26,14 @@ export const Default: Story = {
   render: Template,
   args: {
     required: true,
-    id: "TextFieldExample",
+    id: 'TextFieldExample',
     invalid: false,
-    inputHelper: "Name",
-    label: "deva"
+    inputHelper: 'Name',
+    label: 'deva',
   },
   parameters: {
     controls: {
-      include: [
-        "label",
-        "required",
-        "invalid",
-        "inputHelper"
-      ],
+      include: ['label', 'required', 'invalid', 'inputHelper'],
     },
   },
 };

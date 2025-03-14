@@ -12,6 +12,11 @@
     "esModuleInterop": true,
     "noEmit": false
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/**/*.stories.tsx", "src/**/*.test.tsx"],
+  "include": ["src", ".storybook/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.tsx"
+  ]
 }

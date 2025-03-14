@@ -1,19 +1,19 @@
 module.exports = {
-  rootDir: ".",
-  testEnvironment: "jsdom",
-  preset: "ts-jest",
+  rootDir: '.',
+  testEnvironment: 'jsdom',
+  preset: 'ts-jest',
   clearMocks: true,
-  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   transform: {
-    "^.+\\.(j|t)sx?$": "ts-jest",
+    '^.+\\.(j|t)sx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    "^@storybook/(.*)$": "@storybook/$1",
-    "\\.(css|scss)$": "identity-obj-proxy",
+    '^@storybook/(.*)$': '@storybook/$1',
+    '\\.(css|scss)$': 'identity-obj-proxy',
   },
-  testMatch: ["<rootDir>/src/**/__tests__/**/**.test.ts?(x)"],
+  testMatch: ['<rootDir>/src/**/__tests__/**/**.test.ts?(x)'],
   collectCoverage: true,
-  coverageDirectory: "<rootDir>/coverage",
+  coverageDirectory: '<rootDir>/coverage',
   coverageThreshold: {
     global: {
       branches: 50,
@@ -22,5 +22,5 @@ module.exports = {
       statements: 70,
     },
   },
-  testPathIgnorePatterns: ["/node_modules/"],
+  testPathIgnorePatterns: ['/node_modules/'],
 };

@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
 const Toggle = () => {
-  return(
+  return (
     <label className="toggle-switch">
       <input type="checkbox" />
-        <div className="toggle-switch-background">
-          <div className="toggle-switch-handle"></div>
-        </div>
+      <div className="toggle-switch-background">
+        <div className="toggle-switch-handle"></div>
+      </div>
     </label>
-  )
-}
+  );
+};
 
 export default Toggle;
