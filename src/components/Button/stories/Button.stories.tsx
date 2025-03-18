@@ -28,12 +28,3 @@ export const Primary: Story = {
     label: 'Submit',
   },
 };
-
-export const Secondary: Story = {
-  render: Template,
-  args: {
-    type: 'submit',
-    variant: 'secondary',
-    label: 'Submit',
-  },
-};

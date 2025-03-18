@@ -4,7 +4,7 @@ import classnames from 'classnames';
 interface ButtonProps {
   type: 'submit' | 'button' | 'reset';
   label: string;
-  variant: 'primary' | 'secondary';
+  variant: 'primary';
   events?: Record<string, unknown>;
 }
 
