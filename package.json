@@ -18,6 +18,7 @@
     "build:types": "tsc",
     "build:js": "rimraf dist && webpack --mode production",
     "build:sass": "webpack --config webpack.sass.js",
+    "build:storybook": "rimraf storybook-static && storybook build",
     "build": "concurrently npm:build:*",
     "storybook": "storybook dev -p 6006",
     "test": "jest",
