@@ -1,6 +1,6 @@
 import Layout from './Layout';
 import type { LayoutProps } from './Layout';
-import './Layout.scss';
+import '../../index.scss';
 
 export type { LayoutProps };
 export default Layout;

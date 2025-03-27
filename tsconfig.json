@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "declarationDir": "./dist/types",
+    "declarationDir": "dist/types",
     "emitDeclarationOnly": false,
     "target": "ES6",
     "module": "ESNext",
@@ -12,7 +14,7 @@
     "esModuleInterop": true,
     "noEmit": false
   },
-  "include": ["src", ".storybook/**/*"],
+  "include": ["src"],
   "exclude": [
     "node_modules",
     "dist",

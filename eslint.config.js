@@ -10,6 +10,7 @@ module.exports = [
       '**/__tests__',
       'coverage',
       'storybook-static',
+      '.storybook',
     ],
   },
   {

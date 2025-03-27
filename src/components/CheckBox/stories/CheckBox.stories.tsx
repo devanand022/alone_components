@@ -21,10 +21,3 @@ export const Primary: Story = {
     variant: 'primary',
   },
 };
-
-export const Rounded: Story = {
-  render: Templete,
-  args: {
-    variant: 'rounded',
-  },
-};

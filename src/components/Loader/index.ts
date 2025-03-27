@@ -1,5 +1,5 @@
 import Loader, { LoaderProps } from './Loader';
-import './Loader.scss';
+import '../../index.scss';
 
 export type { LoaderProps };
 export default Loader;

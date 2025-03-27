@@ -1,4 +1,4 @@
 import CheckBox from './CheckBox';
-import './CheckBox.scss';
+import '../../index.scss';
 
 export default CheckBox;
