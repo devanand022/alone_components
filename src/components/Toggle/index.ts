@@ -1,4 +1,4 @@
 import Toggle from './Toggle';
-import './Toggle.scss';
+import '../../index.scss';
 
 export default Toggle;

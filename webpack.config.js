@@ -1,18 +1,7 @@
-const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-module.exports = {
+const commonConfig = {
   entry: './src/index.ts',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    library: {
-      name: '@alonedev/react',
-      type: 'umd',
-      export: 'default',
-    },
-    globalObject: 'this',
-  },
   resolve: {
     extensions: ['.ts', '.tsx'],
   },
@@ -34,11 +23,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -46,17 +31,48 @@ module.exports = {
     react: 'react',
   },
   devtool: 'source-map',
-  plugins: [
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'src/components'),
-          to: path.resolve(__dirname, 'dist/components'),
-          globOptions: {
-            ignore: ['**/*.js', '**/*.ts', '**/*.tsx'],
-          },
-        },
-      ],
-    }),
-  ],
 };
+
+const esmConfig = {
+  ...commonConfig,
+  ...{
+    output: {
+      filename: 'index.mjs',
+      path: path.resolve(__dirname, 'dist/mjs'),
+      library: {
+        type: 'module',
+      },
+    },
+    experiments: {
+      outputModule: true,
+    },
+  },
+};
+
+const cjsConfig = {
+  ...commonConfig,
+  ...{
+    output: {
+      filename: 'index.cjs',
+      path: path.resolve(__dirname, 'dist/cjs'),
+      library: {
+        type: 'commonjs2',
+      },
+    },
+  },
+};
+
+const umdConfig = {
+  ...commonConfig,
+  ...{
+    output: {
+      filename: 'index.umd.js',
+      path: path.resolve(__dirname, 'dist/umd'),
+      library: '@alonedev/react',
+      libraryTarget: 'umd',
+      globalObject: 'this',
+    },
+  },
+};
+
+module.exports = [esmConfig, cjsConfig, umdConfig];
