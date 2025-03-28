@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { Meta, StoryObj, StoryFn } from '@storybook/react';
-import Table from'..';
+import Table from '..';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table',
   component: Table,
-}
+};
 
 export default meta;
 
@@ -21,4 +21,4 @@ const Template: StoryFn<typeof Table> = (): ReactElement => {
 
 export const Default: Story = {
   render: Template,
-}
+};
