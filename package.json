@@ -6,10 +6,10 @@
   "module": "./dist/mjs/index.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/mjs/index.mjs",
-    "require": "./dist/cjs/index.cjs",
+    "types": "./dist/types/index.d.ts",
     "umd": "./dist/umd/index.umd.js",
-    "types": "./dist/types/index.d.ts"
+    "import": "./dist/mjs/index.mjs",
+    "require": "./dist/cjs/index.cjs"
   },
   "files": [
     "dist"
@@ -26,6 +26,7 @@
     "watch": "jest --watch",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "gitleaks": "gitleaks detect --source . --report-format json --report-path gitleaks-report.json",
     "prepare": "husky"
   },
   "author": "alonedev",
