@@ -60,8 +60,8 @@ jobs:
             -Dsonar.organization=devanand022-1
             -Dsonar.sources=src
             -Dsonar.tests=src
-            -Dsonar.exclusions=build/**,node_modules/**,coverage/**,dist/**,__tests__/**,src/**/*.scss,src/**/*.stories.tsx
-            -Dsonar.test.inclusions=src/**/*.test.js,src/**/*.test.ts,src/**/*.test.tsx,src/**/*.test.jsx
+            -Dsonar.exclusions=build/**,node_modules/**,coverage/**,dist/**,src/**/*.scss,src/**/*.stories.tsx
+            -Dsonar.test.inclusions=src/**/*.test.ts,src/**/*.test.tsx
             -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.qualitygate.wait=false
 
