@@ -1,22 +1,14 @@
 import React from 'react';
 import { ColumnInterface } from 'src/utils/types';
-import Button from '../Button';
 
 interface TableProps<T> {
   data: T[];
   columns: ColumnInterface<T>[];
-  title: string;
 }
 
-const Table = <T,>({ data, title, columns }: TableProps<T>) => {
+const Table = <T,>({ data, columns }: TableProps<T>) => {
   return (
     <div className="table-container">
-      <div className="table-header">
-        <div className="table-header-content">
-          <div>{title}</div>
-          <Button type="button" label="Add Column" variant="primary" />
-        </div>
-      </div>
       <div className="table-content">
         <table>
           <thead>

@@ -79,7 +79,6 @@ export const Default: Story = {
   render: Template,
   args: {
     columns: Columns,
-    title: 'Table Title',
     data: data,
   },
 };
