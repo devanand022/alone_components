@@ -1,12 +1,9 @@
 import path from 'path';
-import { fileURLToPath } from 'url';
 import type { StorybookConfig } from '@storybook/react-webpack5';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { fileURLToPath } from 'url';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
@@ -15,7 +12,6 @@ const config: StorybookConfig = {
   ],
   typescript: {
     check: false,
-    checkOptions: {},
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
@@ -29,15 +25,17 @@ const config: StorybookConfig = {
     options: {},
   },
   webpackFinal: async (config) => {
+    const currentDir = path.dirname(fileURLToPath(import.meta.url));
+
     config.module?.rules?.push(
       {
         test: /\.module\.(css|scss)$/,
-        exclude: [path.resolve(__dirname, 'node_modules')],
+        exclude: [path.resolve(currentDir, 'node_modules')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /(\.css|\.scss)$/,
-        exclude: [path.resolve(__dirname, 'node_modules')],
+        exclude: [path.resolve(currentDir, 'node_modules')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     );
