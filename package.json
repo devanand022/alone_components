@@ -1,7 +1,7 @@
 {
   "name": "@alonedev/react",
   "version": "0.0.2",
-  "type": "commonjs",
+  "type": "module",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/mjs/index.mjs",
   "types": "./dist/types/index.d.ts",

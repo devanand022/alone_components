@@ -1,5 +1,9 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import { fileURLToPath } from 'url';
 import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
@@ -31,7 +35,6 @@ const config: StorybookConfig = {
   webpackFinal: async (config) => {
     config.module?.rules?.push(
       {
-        //Module CSS
         test: /\.module\.(css|scss)$/,
         exclude: [path.resolve(__dirname, 'node_modules')],
         use: [
@@ -41,7 +44,6 @@ const config: StorybookConfig = {
         ],
       },
       {
-        // Global CSS
         test: /(\.css|\.scss)$/,
         exclude: [path.resolve(__dirname, 'node_modules')],
         use: [
@@ -51,9 +53,11 @@ const config: StorybookConfig = {
         ],
       },
     );
+
     return config;
   },
 
   docs: {},
 };
+
 export default config;
