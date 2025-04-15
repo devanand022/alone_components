@@ -1,12 +1,13 @@
-module.exports = {
+export default {
   rootDir: '.',
   testEnvironment: 'jsdom',
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm',
   clearMocks: true,
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   transform: {
-    '^.+\\.(j|t)sx?$': 'ts-jest',
+    '^.+\\.(j|t)sx?$': ['ts-jest', { useESM: true }],
   },
+  extensionsToTreatAsEsm: ['.ts', '.tsx', '.jsx'],
   moduleNameMapper: {
     '^@storybook/(.*)$': '@storybook/$1',
     '\\.(css|scss)$': 'identity-obj-proxy',

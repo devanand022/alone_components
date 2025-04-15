@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColumnInterface } from 'src/utils/types';
+import type { ColumnInterface } from 'src/utils/types';
 
 interface TableProps<T> {
   data: T[];

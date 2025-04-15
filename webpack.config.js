@@ -1,4 +1,8 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const commonConfig = {
   entry: './src/index.ts',
@@ -35,44 +39,38 @@ const commonConfig = {
 
 const esmConfig = {
   ...commonConfig,
-  ...{
-    output: {
-      filename: 'index.mjs',
-      path: path.resolve(__dirname, 'dist/mjs'),
-      library: {
-        type: 'module',
-      },
+  output: {
+    filename: 'index.mjs',
+    path: path.resolve(__dirname, 'dist/mjs'),
+    library: {
+      type: 'module',
     },
-    experiments: {
-      outputModule: true,
-    },
+  },
+  experiments: {
+    outputModule: true,
   },
 };
 
 const cjsConfig = {
   ...commonConfig,
-  ...{
-    output: {
-      filename: 'index.cjs',
-      path: path.resolve(__dirname, 'dist/cjs'),
-      library: {
-        type: 'commonjs2',
-      },
+  output: {
+    filename: 'index.cjs',
+    path: path.resolve(__dirname, 'dist/cjs'),
+    library: {
+      type: 'commonjs2',
     },
   },
 };
 
 const umdConfig = {
   ...commonConfig,
-  ...{
-    output: {
-      filename: 'index.umd.js',
-      path: path.resolve(__dirname, 'dist/umd'),
-      library: '@alonedev/react',
-      libraryTarget: 'umd',
-      globalObject: 'this',
-    },
+  output: {
+    filename: 'index.umd.js',
+    path: path.resolve(__dirname, 'dist/umd'),
+    library: '@alonedev/react',
+    libraryTarget: 'umd',
+    globalObject: 'this',
   },
 };
 
-module.exports = [esmConfig, cjsConfig, umdConfig];
+export default [esmConfig, cjsConfig, umdConfig];

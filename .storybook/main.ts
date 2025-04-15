@@ -1,19 +1,17 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
+import type { StorybookConfig } from '@storybook/react-webpack5';
+import { fileURLToPath } from 'url';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
-
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
   ],
-
   typescript: {
     check: false,
-    checkOptions: {},
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
@@ -22,38 +20,28 @@ const config: StorybookConfig = {
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
-
   framework: {
     name: '@storybook/react-webpack5',
     options: {},
   },
-
   webpackFinal: async (config) => {
+    const currentDir = path.dirname(fileURLToPath(import.meta.url));
+
     config.module?.rules?.push(
       {
-        //Module CSS
         test: /\.module\.(css|scss)$/,
-        exclude: [path.resolve(__dirname, 'node_modules')],
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
+        exclude: [path.resolve(currentDir, 'node_modules')],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        // Global CSS
         test: /(\.css|\.scss)$/,
-        exclude: [path.resolve(__dirname, 'node_modules')],
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
+        exclude: [path.resolve(currentDir, 'node_modules')],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     );
     return config;
   },
-
   docs: {},
 };
+
 export default config;
