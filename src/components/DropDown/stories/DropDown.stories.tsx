@@ -23,6 +23,6 @@ export const Default: Story = {
       { label: 'Option 2', value: 'option2' },
       { label: 'Option 3', value: 'option3' },
     ],
-    title: 'Option'
+    title: 'Option',
   },
 };
